@@ -20,7 +20,7 @@ shinyServer(function(input, output) {
 
                 valueBox(
                         value = res()[1],
-                        subtitle = 'Your Next Word Is Most Probably',
+                        subtitle = 'Your next word is most likely',
                         icon = icon('rocket'),
                         color = 'lime'
                         )     
@@ -40,8 +40,8 @@ shinyServer(function(input, output) {
         output$secondword = renderValueBox({
           
                 valueBox(
-                        value = if(is.na(res()[2])){"Oops, I'm running out of words"} else{res()[2]},
-                        subtitle = 'If Not,Probably Is',
+                        value = if(is.na(res()[2,])){"Oops, I'm running out of words"} else{res()[2]},
+                        subtitle = 'If not,probably',
                         icon = icon('car'),
                         color = 'yellow'
                 )     
@@ -49,8 +49,8 @@ shinyServer(function(input, output) {
         
         output$thirdword = renderValueBox({
                 valueBox(
-                        value = if(is.na(res()[3])){"Oops, I'm running out of words"} else{res()[3]},
-                        subtitle = 'Gimme one last shot',
+                        value = if(is.na(res()[3,])){"Oops, I'm running out of words"} else{res()[3]},
+                        subtitle = 'Well..One last shot',
                         icon = icon('bicycle'),
                         color = 'light-blue'
                 )     

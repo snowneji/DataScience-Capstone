@@ -49,8 +49,8 @@ ng_pred <- function(pred_data, query) {
         }
         
         if (nrow(match_list)==0){
-                wt_data = array(data = 1)
-                names(wt_data) = 'and'
+                wt_data = data.frame(term='and',sum_data=1)
+
         }
         
         wt_data
@@ -64,10 +64,9 @@ ng_pred2 = function(wt_data){
 
         # based on number of frequency to sort again 
         best_rec = arrange(wt_data,desc(sum_data))
-        best_rec = best_rec[which(best_rec$term != '')]
-        best_rec = best_rec[which(best_rec$sum_data!=0)]
-        best_rec = best_rec[nchar(best_rec$term)<10]  
-        best_rec = best_rec[nchar(best_rec$term)>2]  
+        best_rec = best_rec[which(best_rec$term != ''),]
+        best_rec = best_rec[which(best_rec$sum_data!=0),]
+
 
         # drop trash recommendations
         if (nrow(best_rec)>1){
@@ -79,8 +78,7 @@ ng_pred2 = function(wt_data){
         
         
         if (nrow(best_rec)==0){
-                best_rec = array(data = 1)
-                names(best_rec) = 'and'
+                wt_data = data.frame(term='and',sum_data=1)
         }
                                    
         names(best_rec) = c('suggestion','score')
